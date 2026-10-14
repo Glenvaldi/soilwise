@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="claude:viewport-fit-sides" content="cover">
+<title>Data Resmi · SoilWise</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body data-page="data">
+<div id="site-header"></div>
+
+<main>
+  <header class="wrap page-head">
+    <span class="eyebrow">Data resmi · diperiksa 14 Oktober 2026</span>
+    <h1 class="display" style="font-size:clamp(2rem,5vw,3.6rem);max-width:20ch">Dasar data di balik diagnosis</h1>
+    <p class="lead">Setiap angka di sini punya tombol ke situs instansinya. Kami juga menandai mana yang sudah dicocokkan langsung dengan sumbernya dan mana yang masih perlu Anda cek sendiri.</p>
+    <div class="pills" id="cats" role="group" aria-label="Filter kategori"></div>
+  </header>
+
+  <section class="wrap" id="kpi" aria-label="Angka utama" style="padding-bottom:32px">
+    <div class="kpis" id="kpis"></div>
+    <p class="help" id="kpiNone" hidden>Tidak ada angka ringkas untuk kategori ini. Lihat tabel sumber di bawah.</p>
+    <div style="display:flex;gap:10px 22px;flex-wrap:wrap;margin-top:16px;font-size:13px" id="legendStatus"></div>
+  </section>
+
+  <section class="wrap" id="grafik" aria-labelledby="g-t" style="padding-block:24px">
+    <div class="stack" style="gap:8px;margin-bottom:20px">
+      <span class="eyebrow">Grafik</span>
+      <h2 class="h2" id="g-t">Produksi padi dan kelas bahan organik tanah</h2>
+    </div>
+
+    <div class="stack" style="gap:16px">
+      <article class="chart-card">
+        <header>
+          <div>
+            <h3 class="h3">Padi Indonesia, 2023 dan 2024</h3>
+            <p class="help">Tiap kotak punya skala sendiri dan mulai dari nol. Sumber: BPS, rilis 3 Februari 2025.</p>
+          </div>
+          <div class="legend" aria-label="Keterangan warna"><span><i class="k" style="background:var(--bar-old)"></i>2023</span><span><i class="k" style="background:var(--bar-new)"></i>2024</span></div>
+        </header>
+        <div class="sm-grid" id="bps"></div>
+        <div class="btn-row" style="margin-top:16px" id="bpsSrc"></div>
+      </article>
+
+      <article class="chart-card">
+        <header>
+          <div>
+            <h3 class="h3">Di mana posisi tanah sawah kita?</h3>
+            <p class="help">Skala kelas C-organik (%). Garis siku menunjukkan pernyataan Menteri Pertanian bahwa bahan organik sawah di bawah 2 persen.</p>
+          </div>
+        </header>
+        <div class="scale" id="scale"></div>
+        <p class="help" style="margin-top:14px">Catatan: Menteri menyebut "bahan organik", bukan "C-organik". Garis siku memakai konversi baku bahan organik ÷ 1,724 (sekitar 1,16% C-organik), jadi hanya pembanding kasar. Skala dipotong di 7%.</p>
+        <div class="btn-row" style="margin-top:14px" id="scaleSrc"></div>
+      </article>
+    </div>
+  </section>
+
+  <section class="wrap" id="kriteria" aria-labelledby="k-t" style="padding-block:24px">
+    <div class="stack" style="gap:8px;margin-bottom:20px">
+      <span class="eyebrow">Tabel kriteria</span>
+      <h2 class="h2" id="k-t">Kelas C-organik dan pH tanah</h2>
+      <p class="muted" style="max-width:70ch">Dipakai sebagai pembanding bila Anda sudah punya hasil uji laboratorium. SoilWise sendiri tidak mengukur angka ini, hanya memperkirakan lewat ciri yang terlihat.</p>
+    </div>
+    <div class="callout" style="margin-bottom:16px"><i data-ic="alert"></i><span><b>Cocokkan dulu.</b> Kelas di bawah mengikuti kriteria baku Balai Penelitian Tanah. Buku Juknis Analisis Kimia Edisi 3 (2023) memuat kriteria ini di lampirannya, tetapi isi lampiran belum bisa kami buka. Cek angkanya ke buku sebelum dikutip di laporan.</span></div>
+    <div class="cards-2">
+      <div><div class="tbl-wrap"><table class="tbl" style="min-width:0"><caption class="sr">Kelas C-organik tanah</caption>
+        <thead><tr><th>Kelas C-organik</th><th class="n">Rentang (%)</th></tr></thead><tbody id="tCorg"></tbody></table></div></div>
+      <div><div class="tbl-wrap"><table class="tbl" style="min-width:0"><caption class="sr">Kelas pH tanah</caption>
+        <thead><tr><th>Kelas pH (H₂O)</th><th class="n">Rentang</th></tr></thead><tbody id="tPh"></tbody></table></div></div>
+    </div>
+  </section>
+
+  <section class="wrap" id="sumber" aria-labelledby="s-t" style="padding-block:24px">
+    <div class="stack" style="gap:8px;margin-bottom:20px">
+      <span class="eyebrow">Daftar sumber</span>
+      <h2 class="h2" id="s-t">Klik untuk membuka situs instansinya</h2>
+    </div>
+    <div class="tbl-tools">
+      <label class="search"><i data-ic="search"></i><span class="sr">Cari sumber</span><input type="search" id="q" placeholder="Cari instansi atau dokumen" autocomplete="off"></label>
+      <span class="help" id="count"></span>
+    </div>
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <caption class="sr">Daftar sumber data SoilWise</caption>
+        <thead><tr><th>Instansi</th><th>Dokumen</th><th>Terbit</th><th>Status</th><th>Tautan</th></tr></thead>
+        <tbody id="tSrc"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="wrap section" aria-labelledby="p-t">
+    <div class="stack" style="gap:8px;margin-bottom:20px">
+      <span class="eyebrow">Portal resmi</span>
+      <h2 class="h2" id="p-t">Mau cari data sendiri?</h2>
+    </div>
+    <div class="portals" id="portals"></div>
+  </section>
+</main>
+
+<div id="site-footer"></div>
+
+<script src="assets/icons.js"></script>
+<script src="assets/data.js"></script>
+<script src="assets/engine.js"></script>
+<script src="assets/shared.js"></script>
+<script>
+(function () {
+  var D = window.SW_DATA, U = window.SWUI;
+  var $ = function (s) { return document.querySelector(s); };
+  var cat = 'all', q = '';
+
+  // ---- filter kategori ----
+  function drawCats() {
+    $('#cats').innerHTML = D.CATS.map(function (c) {
+      return '<button class="pill" type="button" data-cat="' + c.key + '" aria-pressed="' + (c.key === cat) + '">' + c.label + '</button>';
+    }).join('');
+    Array.prototype.forEach.call(document.querySelectorAll('#cats .pill'), function (b) {
+      b.addEventListener('click', function () { cat = b.getAttribute('data-cat'); drawCats(); apply(); });
+    });
+  }
+
+  // ---- KPI ----
+  $('#kpis').innerHTML = D.KPIS.map(U.kpiHtml).join('');
+  $('#legendStatus').innerHTML = Object.keys(D.STATUS).map(function (k) {
+    var s = D.STATUS[k];
+    return '<span style="display:inline-flex;gap:8px;align-items:center"><span class="badge ' + s.badge + '"><i data-ic="' + s.icon + '"></i>' + s.label + '</span><span class="muted">' + s.desc + '</span></span>';
+  }).join('');
+
+  // ---- grafik BPS (kotak kecil, skala sendiri-sendiri) ----
+  $('#bps').innerHTML = D.BPS.items.map(function (it) {
+    var max = Math.max(it.v2023, it.v2024), d = (it.v2024 - it.v2023) / it.v2023 * 100;
+    function row(y, v, color) {
+      return '<div class="hb" data-tip="' + U.esc(it.label + ' ' + y + ': ' + U.fmt(v) + ' ' + it.unit) + '" tabindex="0"><span>' + y + '</span><div class="track"><span class="bar" style="width:calc((100% - 78px) * ' + (v / max).toFixed(4) + ');background:' + color + '"></span><span class="val">' + U.fmt(v) + '</span></div></div>';
+    }
+    return '<div class="sm"><h4>' + it.label + '<small>' + it.unit + '</small></h4>' + row('2023', it.v2023, 'var(--bar-old)') + row('2024', it.v2024, 'var(--bar-new)') +
+      '<span class="badge badge-warn delta"><i data-ic="alert"></i>' + (d < 0 ? '−' : '+') + U.fmt(Math.abs(d), 1) + '% dari 2023</span></div>';
+  }).join('');
+  $('#bpsSrc').innerHTML = U.chip(D.BPS.src) + '<span class="badge ' + D.STATUS[D.SOURCES[D.BPS.src].status].badge + '">' + D.STATUS[D.SOURCES[D.BPS.src].status].label + '</span>';
+
+  // ---- skala C-organik ----
+  var C = D.CORG, W = C.max;
+  var br = (C.omBracket.om / C.omBracket.factor) / W * 100;
+  $('#scale').innerHTML =
+    '<div class="scale-bracket"><span class="br" style="width:' + br.toFixed(2) + '%"></span><span class="tx" style="left:calc(' + br.toFixed(2) + '% + 10px);right:0">Bahan organik sawah &lt; 2% (Mentan, Juni 2022)</span></div>' +
+    '<div class="scale-bar" role="list">' + C.classes.map(function (c, i) {
+      return '<button type="button" role="listitem" data-i="' + i + '" style="flex:' + (c.max - c.min) + ' 1 0;background:' + c.color + ';' + (c.light ? 'color:#fff' : '') + '" aria-label="' + c.name + ', ' + c.text + ' persen">' + c.text + '</button>';
+    }).join('') + '</div>' +
+    '<div class="scale-axis" aria-hidden="true">' + [0, 1, 2, 3, 5].map(function (v) { return '<span style="left:' + (v / W * 100) + '%">' + v + '%</span>'; }).join('') + '</div>' +
+    '<div class="scale-legend">' + C.classes.map(function (c) { return '<span><i class="k" style="background:' + c.color + '"></i>' + c.name + '</span>'; }).join('') + '</div>';
+  Array.prototype.forEach.call(document.querySelectorAll('.scale-bar button'), function (b) {
+    var c = C.classes[+b.getAttribute('data-i')];
+    U.bindTip(b, function () { return '<b>' + c.name + '</b>C-organik ' + c.text + ' %'; });
+  });
+  $('#scaleSrc').innerHTML = U.chip(C.src) + U.chip('mentan-bo-2022');
+  Array.prototype.forEach.call(document.querySelectorAll('[data-tip]'), function (el) {
+    U.bindTip(el, function () { return U.esc(el.getAttribute('data-tip')) + '<br><span style="opacity:.75">Sumber: BPS</span>'; });
+  });
+
+  // ---- tabel kriteria ----
+  $('#tCorg').innerHTML = C.classes.map(function (c) { return '<tr><td><span style="display:inline-flex;align-items:center;gap:8px"><i style="width:14px;height:14px;border-radius:4px;background:' + c.color + ';border:1px solid rgba(0,0,0,.12);display:inline-block"></i>' + c.name + '</span></td><td class="n">' + c.text + '</td></tr>'; }).join('');
+  $('#tPh').innerHTML = D.PH.classes.map(function (c) { return '<tr><td>' + c.name + '</td><td class="n">' + c.text + '</td></tr>'; }).join('');
+
+  // ---- tabel sumber ----
+  var keys = Object.keys(D.SOURCES);
+  function drawSources() {
+    var rows = keys.filter(function (k) {
+      var s = D.SOURCES[k];
+      if (cat !== 'all' && s.cat !== cat) return false;
+      if (q && (s.agency + ' ' + s.title + ' ' + s.used).toLowerCase().indexOf(q) < 0) return false;
+      return true;
+    });
+    $('#tSrc').innerHTML = rows.length ? rows.map(function (k) {
+      var s = D.SOURCES[k], st = D.STATUS[s.status];
+      var link = s.internal ? '<a class="go" href="' + s.url + '">Lihat bobot <i data-ic="arrowRight"></i></a>'
+        : '<a class="go" href="' + U.esc(s.url) + '" target="_blank" rel="noopener noreferrer">Buka situs <i data-ic="arrowUpRight"></i></a>';
+      return '<tr><td class="agency">' + U.esc(s.agency) + '</td><td class="doc">' + U.esc(s.title) + '<span class="note"><b>Dipakai untuk:</b> ' + U.esc(s.used) + '</span><span class="note">' + U.esc(s.note) + '</span></td>' +
+        '<td style="white-space:nowrap">' + U.esc(s.year) + '</td><td><span class="badge ' + st.badge + '"><i data-ic="' + st.icon + '"></i>' + st.label + '</span></td><td>' + link + '</td></tr>';
+    }).join('') : '<tr><td colspan="5" class="empty-row">Tidak ada sumber yang cocok. Coba kata kunci lain atau pilih "Semua".</td></tr>';
+    $('#count').textContent = rows.length + ' dari ' + keys.length + ' sumber';
+    window.SWIcons.paint($('#tSrc'));
+  }
+  $('#q').addEventListener('input', function (e) { q = e.target.value.trim().toLowerCase(); drawSources(); });
+
+  // ---- portal ----
+  $('#portals').innerHTML = D.PORTALS.map(function (p) {
+    return '<a class="portal" href="' + p.url + '" target="_blank" rel="noopener noreferrer"><b>' + p.name + '<i data-ic="arrowUpRight"></i></b><span class="host">' + p.host + '</span><span>' + p.desc + '</span></a>';
+  }).join('');
+
+  function apply() {
+    var shown = 0;
+    Array.prototype.forEach.call(document.querySelectorAll('.kpi'), function (k) { k.hidden = cat !== 'all' && k.getAttribute('data-cat') !== cat; if (!k.hidden) shown++; });
+    $('#kpiNone').hidden = shown > 0;
+    drawSources();
+  }
+  drawCats(); apply();
+  window.SWIcons.paint();
+})();
+</script>
+</body>
+</html>

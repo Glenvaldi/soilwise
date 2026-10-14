@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="claude:viewport-fit-sides" content="cover">
+<title>SoilWise</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body data-page="beranda">
+<div id="site-header"></div>
+
+<main>
+  <section class="wrap hero">
+    <div class="hero-row">
+      <div class="stack" style="gap:20px">
+        <span class="eyebrow">Sistem pakar tanah · pemeriksaan awal</span>
+        <h1 class="display" style="max-width:15ch">Dokter tanah digital untuk lahan Anda, langsung dari HP.</h1>
+        <p class="lead">Jawab beberapa pertanyaan tentang tanah dan pupuk. SoilWise menimbang seperti ahli pertanian lalu memberi diagnosis dan langkah perbaikan. Tanpa tunggu hasil lab, tanpa biaya.</p>
+        <div class="btn-row">
+          <a class="btn btn-dark btn-lg" href="diagnosis.html">Mulai diagnosis <i data-ic="arrowRight"></i></a>
+          <a class="btn btn-lg" href="data.html">Lihat data resmi</a>
+        </div>
+      </div>
+      <nav class="pills" aria-label="Jalan pintas halaman">
+        <a class="pill" href="diagnosis.html"><i data-ic="clipboard"></i>Diagnosis</a>
+        <a class="pill" href="data.html"><i data-ic="database"></i>Data Resmi</a>
+        <a class="pill" href="panduan.html"><i data-ic="book"></i>Panduan</a>
+        <a class="pill" href="metodologi.html"><i data-ic="scale"></i>Metodologi</a>
+      </nav>
+    </div>
+  </section>
+
+  <section class="wrap" aria-labelledby="demo-t">
+    <h2 class="sr" id="demo-t">Coba cepat</h2>
+    <div class="stage">
+      <div class="stage-grid three fill">
+        <aside class="panel rail" aria-label="Alur pemeriksaan">
+          <div class="eyebrow" style="padding:4px 12px 8px">Alur</div>
+          <div class="rail-item is-on"><span class="dot">1</span>Ciri tanah</div>
+          <div class="rail-item"><span class="dot">2</span>Riwayat pupuk</div>
+          <div class="rail-item"><span class="dot">3</span>Foto tanah</div>
+          <div class="rail-item"><span class="dot"><i data-ic="check"></i></span>Hasil</div>
+          <p class="help" style="padding:12px">Di bawah ini versi singkat. Diagnosis lengkap ada di halaman Diagnosis.</p>
+        </aside>
+
+        <section class="panel" aria-labelledby="h-form-t">
+          <div class="panel-h">
+            <div><div class="eyebrow">Cek cepat</div><h3 class="h3" id="h-form-t">Seperti apa tanah Anda?</h3></div>
+            <span class="badge badge-soft"><i data-ic="phone"></i>Tampilan HP</span>
+          </div>
+          <div class="panel-b">
+            <fieldset class="field">
+              <legend>Ciri fisik tanah</legend>
+              <div class="opts" id="hTekstur"></div>
+            </fieldset>
+            <div class="field">
+              <label class="lbl" for="hChem">Pemakaian pupuk kimia <span class="range-val" id="hChemVal">Sering</span></label>
+              <div class="range-wrap">
+                <input type="range" id="hChem" min="0" max="100" step="25" value="75" aria-describedby="hChemHelp">
+                <div class="range-ticks" aria-hidden="true"><span>Tidak pernah</span><span>Setiap musim</span></div>
+              </div>
+              <p class="help" id="hChemHelp">Geser sesuai kebiasaan Anda.</p>
+            </div>
+            <button class="btn btn-dark btn-lg" id="hRun" type="button" style="width:100%"><i data-ic="flask"></i>Analisis contoh ini</button>
+          </div>
+        </section>
+
+        <section class="panel" aria-live="polite" aria-labelledby="h-res-t">
+          <div class="panel-h"><span class="eyebrow" id="h-res-t">Panel hasil</span><i data-ic="chart"></i></div>
+          <div id="hResult"></div>
+        </section>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap section" aria-labelledby="why-t">
+    <div class="stack" style="gap:10px;margin-bottom:28px">
+      <span class="eyebrow">Kenapa bisa dipercaya</span>
+      <h2 class="h2" id="why-t" style="max-width:22ch">Angka dari instansi resmi, mudah dipakai di lahan.</h2>
+    </div>
+    <div class="cards-2">
+      <article class="pastel lav">
+        <span class="eyebrow">Berbasis acuan resmi</span>
+        <h3>Setiap angka punya tautan ke situs instansinya</h3>
+        <p>Aturan SoilWise mengacu pada Kementerian Pertanian, balai penelitian tanah, dan BPS. Anda bisa klik langsung untuk memeriksanya sendiri.</p>
+        <div class="mini-card" id="trustList"></div>
+        <a class="link" href="data.html">Buka halaman Data Resmi <i data-ic="arrowRight"></i></a>
+      </article>
+      <article class="pastel pnk">
+        <span class="eyebrow">Dirancang untuk petani</span>
+        <h3>Tombol besar, bahasa sederhana, satu langkah per layar</h3>
+        <p>Pilihan bergambar dan istilah sehari-hari. Cukup jempol, tidak perlu mengetik panjang.</p>
+        <div class="phone" aria-hidden="true">
+          <div class="ph-h">Langkah 1 dari 3</div>
+          <div class="ph-t on"><i data-ic="mountain"></i>Gembur</div>
+          <div class="ph-t"><i data-ic="mountain"></i>Padat / keras</div>
+          <div class="ph-b">Lanjut</div>
+        </div>
+        <a class="link" href="diagnosis.html">Coba diagnosis lengkap <i data-ic="arrowRight"></i></a>
+      </article>
+    </div>
+  </section>
+
+  <section class="wrap" aria-labelledby="how-t">
+    <div class="stack" style="gap:10px;margin-bottom:24px">
+      <span class="eyebrow">Cara kerja</span>
+      <h2 class="h2" id="how-t">Tiga langkah, sekitar dua menit</h2>
+    </div>
+    <div class="how">
+      <div><span class="n">1</span><h3 class="h3">Isi ciri tanah dan riwayat pupuk</h3><p class="muted">Tanaman, tekstur, warna, cacing, drainase, dan seberapa sering memakai pupuk kimia. Foto tanah boleh ditambahkan.</p></div>
+      <div><span class="n">2</span><h3 class="h3">Sistem pakar menimbang</h3><p class="muted">Jawaban Anda dicocokkan dengan aturan jika-maka, lalu dihitung menjadi skor 0 sampai 100.</p></div>
+      <div><span class="n">3</span><h3 class="h3">Terima diagnosis dan langkah</h3><p class="muted">Anda mendapat penjelasan singkat, apa yang dikurangi atau ditambah, dan dasar sumbernya.</p></div>
+    </div>
+  </section>
+
+  <section class="wrap section" aria-labelledby="kpi-t">
+    <div class="stack" style="gap:10px;margin-bottom:24px">
+      <span class="eyebrow">Gambaran nasional</span>
+      <h2 class="h2" id="kpi-t" style="max-width:24ch">Mengapa kesehatan tanah penting</h2>
+    </div>
+    <div class="kpis" id="homeKpis"></div>
+    <div class="btn-row" style="margin-top:20px"><a class="btn" href="data.html#grafik">Lihat grafik dan tabel lengkap <i data-ic="arrowRight"></i></a></div>
+  </section>
+
+  <section class="wrap" style="padding-bottom:24px">
+    <div class="cta">
+      <span class="eyebrow" style="color:#cbd5e1">Gratis dan cepat</span>
+      <h2 class="h2" style="max-width:20ch">Periksa tanah Anda sebelum musim tanam berikutnya.</h2>
+      <p>Hasilnya pemeriksaan awal. Untuk angka pasti, bawa contoh tanah ke penyuluh atau Dinas Pertanian setempat.</p>
+      <a class="btn btn-dark btn-lg" href="diagnosis.html">Mulai diagnosis <i data-ic="arrowRight"></i></a>
+    </div>
+  </section>
+</main>
+
+<div id="site-footer"></div>
+
+<script src="assets/icons.js"></script>
+<script src="assets/data.js"></script>
+<script src="assets/engine.js"></script>
+<script src="assets/shared.js"></script>
+<script>
+(function () {
+  var E = window.SoilEngine, D = window.SW_DATA, U = window.SWUI;
+
+  // Pilihan tekstur
+  var box = document.getElementById('hTekstur');
+  box.innerHTML = Object.keys(E.OPTS.tekstur).map(function (k) {
+    var o = E.OPTS.tekstur[k];
+    return '<label class="opt tall"><input class="sr" type="radio" name="hTekstur" value="' + k + '"' + (k === 'padat' ? ' checked' : '') + '>' +
+      '<span class="opt-body"><span class="opt-t">' + o.label + '</span></span><span class="opt-check"><i data-ic="check"></i></span></label>';
+  }).join('');
+
+  var chem = document.getElementById('hChem'), chemVal = document.getElementById('hChemVal'), out = document.getElementById('hResult');
+  function labelOf(v) { return E.OPTS.chemLabels[Math.round(v / 25)]; }
+  function run() {
+    var t = document.querySelector('input[name="hTekstur"]:checked').value;
+    var res = E.evaluate({ crop: 'padi', tekstur: t, chem: +chem.value, durasi: 'sedang', organik: 'tidak' });
+    E.render(out, res, {
+      compact: true, example: true,
+      actions: '<a class="btn btn-dark" href="diagnosis.html" style="width:100%;margin-top:14px">Buka diagnosis lengkap <i data-ic="arrowRight"></i></a>'
+    });
+  }
+  chemVal.textContent = labelOf(chem.value);
+  chem.addEventListener('input', function () { chemVal.textContent = labelOf(chem.value); });
+  chem.addEventListener('change', run);
+  box.addEventListener('change', run);
+  document.getElementById('hRun').addEventListener('click', run);
+  run();
+
+  // Daftar kepercayaan
+  document.getElementById('trustList').innerHTML = [
+    ['Luas panen padi 2024', 'bps-padi-2024', '10,05 juta ha'],
+    ['Bahan organik sawah', 'mentan-bo-2022', '< 2%'],
+    ['Kriteria C-organik dan pH', 'juknis-kimia-3', 'Juknis edisi 3']
+  ].map(function (r) {
+    return '<div style="display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;align-items:center;font-size:13px"><span><b>' + r[0] + '</b> <span class="muted">' + r[2] + '</span></span>' + U.chip(r[1]) + '</div>';
+  }).join('');
+
+  document.getElementById('homeKpis').innerHTML = [0, 1, 2].map(function (i) { return U.kpiHtml(D.KPIS[i]); }).join('');
+  window.SWIcons.paint();
+})();
+</script>
+</body>
+</html>

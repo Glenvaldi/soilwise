@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="claude:viewport-fit-sides" content="cover">
+<title>Metodologi · SoilWise</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body data-page="metodologi">
+<div id="site-header"></div>
+
+<main>
+  <header class="wrap page-head">
+    <span class="eyebrow">Metodologi</span>
+    <h1 class="display" style="font-size:clamp(2rem,5vw,3.6rem);max-width:20ch">Bagaimana skor dan diagnosis dihitung</h1>
+    <p class="lead">SoilWise memakai aturan "jika-maka" yang bisa dibaca semua orang, bukan kotak hitam. Halaman ini menunjukkan seluruh aturan, bobot nilai, sumbernya, dan bagian yang masih perlu divalidasi.</p>
+  </header>
+
+  <section class="wrap" id="bobot" aria-labelledby="b-t" style="padding-block:24px">
+    <div class="stack" style="gap:8px;margin-bottom:20px">
+      <span class="eyebrow">Skor 0 sampai 100</span>
+      <h2 class="h2" id="b-t">Empat komponen yang dijumlahkan</h2>
+    </div>
+    <div class="cards-2">
+      <div class="tbl-wrap"><table class="tbl" style="min-width:0">
+        <caption class="sr">Komponen skor</caption>
+        <thead><tr><th>Komponen</th><th class="n">Maks.</th><th>Cara memberi nilai</th></tr></thead><tbody id="tW"></tbody></table></div>
+      <div class="stack">
+        <div class="tbl-wrap"><table class="tbl" style="min-width:0">
+          <caption class="sr">Batas status</caption>
+          <thead><tr><th>Status</th><th class="n">Skor</th></tr></thead><tbody id="tB"></tbody></table></div>
+        <div class="callout"><i data-ic="alert"></i><span><b>Bobot ini asumsi prototipe.</b> Angkanya dirancang masuk akal, belum dikalibrasi dengan hasil uji laboratorium dan belum divalidasi pakar. Itu langkah berikutnya.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap" id="aturan" aria-labelledby="a-t" style="padding-block:24px">
+    <div class="stack" style="gap:8px;margin-bottom:20px">
+      <span class="eyebrow">Basis aturan</span>
+      <h2 class="h2" id="a-t">Sepuluh aturan sistem pakar</h2>
+      <p class="muted" style="max-width:70ch">Setiap aturan yang terpicu muncul di bagian "Mengapa hasilnya begini" pada halaman hasil, lengkap dengan tautan sumbernya.</p>
+    </div>
+    <div class="tbl-wrap"><table class="tbl">
+      <caption class="sr">Daftar aturan sistem pakar</caption>
+      <thead><tr><th>Kode</th><th>Aturan</th><th>Dipicu bila</th><th>Sumber</th></tr></thead><tbody id="tR"></tbody></table></div>
+  </section>
+
+  <section class="wrap section" aria-labelledby="l-t">
+    <div class="two-col">
+      <div class="stack" style="gap:12px">
+        <span class="eyebrow">Keterbatasan</span>
+        <h2 class="h2" id="l-t">Yang belum dilakukan, dengan jujur</h2>
+        <p class="prose">Mencantumkan keterbatasan membuat pengguna tahu seberapa jauh hasil ini boleh dipercaya.</p>
+      </div>
+      <div class="stack">
+        <div class="g-card"><h3 class="h3">Belum divalidasi pakar</h3><p class="muted">Aturan dan bobot belum ditinjau penyuluh atau dosen ilmu tanah. Langkah berikutnya: minta satu ahli menilai aturan R01 sampai R09.</p></div>
+        <div class="g-card"><h3 class="h3">Belum dibandingkan dengan uji laboratorium</h3><p class="muted">Skor belum diuji terhadap hasil C-organik dan pH nyata. Kumpulkan beberapa contoh lahan dan bandingkan.</p></div>
+        <div class="g-card"><h3 class="h3">Foto belum dianalisis</h3><p class="muted">Foto hanya disimpan di tampilan hasil. Analisis gambar butuh model dan data latih tersendiri.</p></div>
+        <div class="g-card"><h3 class="h3">Data adalah potret 14 Oktober 2026</h3><p class="muted">Angka dari instansi bisa berubah. Tiap sumber di halaman Data Resmi diberi status verifikasi dan tanggal.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap" aria-labelledby="d-t" style="padding-bottom:32px">
+    <div class="stack" style="gap:8px;margin-bottom:20px">
+      <span class="eyebrow">Untuk laporan UI/UX</span>
+      <h2 class="h2" id="d-t">Keputusan desain dan alasannya</h2>
+    </div>
+    <div class="guide">
+      <div class="g-card"><h3 class="h3">Satu langkah per layar</h3><p class="muted">Form dipecah menjadi tiga langkah dengan penanda kemajuan, agar petani tidak kewalahan di layar kecil.</p></div>
+      <div class="g-card"><h3 class="h3">Tombol besar dan pilihan bergambar</h3><p class="muted">Semua tombol dan kartu pilihan setinggi minimal 44 piksel agar mudah ditekan dengan jempol di lapangan.</p></div>
+      <div class="g-card"><h3 class="h3">Opsi "Tidak yakin"</h3><p class="muted">Pengguna tidak dipaksa menebak. Jawaban ragu diberi nilai tengah sehingga hasil tidak menyesatkan.</p></div>
+      <div class="g-card"><h3 class="h3">Status tidak hanya warna</h3><p class="muted">Status tanah selalu memakai warna, ikon, dan teks sekaligus, agar terbaca juga oleh pengguna buta warna.</p></div>
+      <div class="g-card"><h3 class="h3">Sumber terlihat di tiap hasil</h3><p class="muted">Setiap aturan menampilkan chip sumber. Yang masih asumsi diberi warna kuning supaya tidak terkesan lebih pasti dari kenyataan.</p></div>
+      <div class="g-card"><h3 class="h3">Rincian disembunyikan di bawah</h3><p class="muted">Diagnosis dan langkah tampil lebih dulu. Rincian skor dan alasan ada di bawahnya bagi yang ingin memeriksa.</p></div>
+    </div>
+  </section>
+</main>
+
+<div id="site-footer"></div>
+
+<script src="assets/icons.js"></script>
+<script src="assets/data.js"></script>
+<script src="assets/engine.js"></script>
+<script src="assets/shared.js"></script>
+<script>
+(function () {
+  var E = window.SoilEngine, U = window.SWUI;
+  document.getElementById('tW').innerHTML = E.WEIGHTS.map(function (w) {
+    return '<tr><td><b>' + w.key + '</b> ' + w.name + '</td><td class="n">' + w.max + '</td><td>' + w.how + '</td></tr>';
+  }).join('') + '<tr><td><b>Total</b></td><td class="n">100</td><td></td></tr>';
+  document.getElementById('tB').innerHTML = E.BANDS.map(function (b) {
+    var hi = Math.min(b.max, 101) - 1;
+    return '<tr><td><span class="badge ' + b.badge + '"><i data-ic="' + b.icon + '"></i>' + b.label + '</span></td><td class="n">' + b.min + ' – ' + (b.max > 100 ? 100 : hi) + '</td></tr>';
+  }).join('');
+  document.getElementById('tR').innerHTML = E.RULES.map(function (r) {
+    return '<tr><td class="mono"><b>' + r.id + '</b></td><td><b>' + r.name + '</b><span class="note">' + U.esc(r.act.title) + '</span></td><td>' + r.cond + '</td><td><div style="display:flex;flex-wrap:wrap;gap:6px">' + r.srcs.map(U.chip).join('') + '</div></td></tr>';
+  }).join('');
+  window.SWIcons.paint();
+})();
+</script>
+</body>
+</html>

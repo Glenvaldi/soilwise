@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="claude:viewport-fit-sides" content="cover">
+<title>Diagnosis Tanah · SoilWise</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body data-page="diagnosis">
+<div id="site-header"></div>
+
+<main>
+  <header class="wrap page-head">
+    <span class="eyebrow">Diagnosis · 3 langkah</span>
+    <h1 class="display" style="font-size:clamp(2rem,5vw,3.6rem);max-width:18ch">Periksa kondisi tanah Anda</h1>
+    <p class="lead">Jawab sesuai yang Anda lihat di lahan. Kalau belum yakin, pilih "Tidak yakin". Tidak ada jawaban yang salah.</p>
+  </header>
+
+  <section class="wrap" style="padding-bottom:48px">
+    <div class="stage">
+      <div class="stage-grid three">
+
+        <aside class="panel rail sticky-col" aria-label="Kemajuan">
+          <div class="eyebrow" style="padding:4px 12px 8px">Langkah</div>
+          <div class="rail-item" data-rail="1"><span class="dot">1</span>Ciri tanah</div>
+          <div class="rail-item" data-rail="2"><span class="dot">2</span>Riwayat pupuk</div>
+          <div class="rail-item" data-rail="3"><span class="dot">3</span>Foto dan periksa</div>
+          <div class="rail-item" data-rail="4"><span class="dot"><i data-ic="check"></i></span>Hasil</div>
+        </aside>
+
+        <form class="panel" id="form" novalidate aria-labelledby="stepTitle">
+          <div class="panel-h">
+            <div><div class="eyebrow" id="stepCount">Langkah 1 dari 3</div><h2 class="h3" id="stepTitle">Ciri tanah</h2></div>
+            <span class="badge badge-soft"><i data-ic="phone"></i>Tampilan HP</span>
+          </div>
+          <div style="padding:14px 24px 0"><div class="steps-h" aria-hidden="true"><span></span><span></span><span></span></div></div>
+
+          <div class="panel-b">
+            <!-- LANGKAH 1 -->
+            <div data-step="1">
+              <div class="field" id="f-crop">
+                <label class="lbl" for="crop">Jenis tanaman</label>
+                <select class="select" id="crop" name="crop" required>
+                  <option value="">Pilih tanaman…</option>
+                </select>
+                <p class="err"><i data-ic="alert"></i>Pilih jenis tanaman dulu.</p>
+              </div>
+
+              <fieldset class="field" id="f-tekstur">
+                <legend>Tanah terasa seperti apa saat dicangkul?</legend>
+                <div class="opts" id="o-tekstur"></div>
+                <p class="err"><i data-ic="alert"></i>Pilih salah satu ciri tanah.</p>
+              </fieldset>
+
+              <fieldset class="field" id="f-warna">
+                <legend>Warna tanah <span class="help" style="text-transform:none;letter-spacing:0;font-family:var(--font)">Lihat tanah lapisan atas yang lembap.</span></legend>
+                <div class="opts c3" id="o-warna"></div>
+              </fieldset>
+
+              <fieldset class="field" id="f-cacing">
+                <legend>Cacing tanah <span class="help" style="text-transform:none;letter-spacing:0;font-family:var(--font)">Gali sedalam satu cangkul.</span></legend>
+                <div class="opts" id="o-cacing"></div>
+              </fieldset>
+
+              <fieldset class="field" id="f-air">
+                <legend>Air saat disiram atau hujan <span class="help" style="text-transform:none;letter-spacing:0;font-family:var(--font)">Perhatikan apakah air cepat meresap.</span></legend>
+                <div class="opts" id="o-air"></div>
+              </fieldset>
+            </div>
+
+            <!-- LANGKAH 2 -->
+            <div data-step="2" hidden>
+              <div class="field">
+                <label class="lbl" for="chem">Seberapa sering memakai pupuk kimia? <span class="range-val" id="chemVal">Kadang-kadang</span></label>
+                <div class="range-wrap">
+                  <input type="range" id="chem" name="chem" min="0" max="100" step="25" value="50" aria-describedby="chemHelp">
+                  <div class="range-ticks" aria-hidden="true"><span>Tidak pernah</span><span>Setiap musim</span></div>
+                </div>
+                <p class="help" id="chemHelp">Pupuk kimia misalnya urea, NPK, TSP, atau KCl.</p>
+              </div>
+              <fieldset class="field">
+                <legend>Sudah berapa lama memakai pupuk kimia?</legend>
+                <div class="opts" id="o-durasi"></div>
+              </fieldset>
+              <fieldset class="field">
+                <legend>Pupuk organik atau kompos</legend>
+                <div class="opts c3" id="o-organik"></div>
+              </fieldset>
+            </div>
+
+            <!-- LANGKAH 3 -->
+            <div data-step="3" hidden>
+              <div class="field">
+                <span class="lbl">Foto tanah <span class="badge badge-soft" style="text-transform:none;letter-spacing:0">Boleh dilewati</span></span>
+                <label class="upload" id="upload" for="photo">
+                  <i data-ic="camera"></i>
+                  <strong id="upText">Ketuk untuk memotret atau pilih foto</strong>
+                  <span class="help">JPG atau PNG, maksimal 10 MB</span>
+                </label>
+                <input class="sr" type="file" id="photo" name="photo" accept="image/*">
+                <p class="err" id="photoErr"><i data-ic="alert"></i><span></span></p>
+                <p class="help">Foto belum dianalisis otomatis dan tidak mengubah skor. Foto hanya ditampilkan di hasil agar bisa Anda bawa ke penyuluh.</p>
+                <button class="btn" type="button" id="photoClear" hidden style="align-self:flex-start"><i data-ic="x"></i>Hapus foto</button>
+              </div>
+              <div class="field">
+                <span class="lbl">Periksa jawaban Anda</span>
+                <div id="review" class="why"></div>
+              </div>
+            </div>
+
+            <div class="form-nav">
+              <button class="btn" type="button" id="back" hidden><i data-ic="arrowLeft"></i>Kembali</button>
+              <button class="btn btn-dark btn-lg" type="button" id="next">Lanjut <i data-ic="arrowRight"></i></button>
+              <button class="btn btn-dark btn-lg" type="submit" id="run" hidden>
+                <i data-ic="flask" class="idle"></i><i data-ic="refresh" class="loading spin"></i><span id="runTxt">Analisis tanah</span>
+              </button>
+            </div>
+          </div>
+        </form>
+
+        <section class="panel sticky-col" id="resPanel" aria-live="polite" aria-labelledby="res-t">
+          <div class="panel-h"><span class="eyebrow" id="res-t">Panel hasil</span><i data-ic="chart"></i></div>
+          <div id="result">
+            <div class="res-empty">
+              <div class="ico"><i data-ic="flask"></i></div>
+              <strong>Menunggu jawaban Anda</strong>
+              <span>Isi tiga langkah di samping, lalu tekan "Analisis tanah". Hasilnya muncul di sini.</span>
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </div>
+  </section>
+</main>
+
+<div id="site-footer"></div>
+
+<script src="assets/icons.js"></script>
+<script src="assets/data.js"></script>
+<script src="assets/engine.js"></script>
+<script src="assets/shared.js"></script>
+<script>
+(function () {
+  var E = window.SoilEngine, O = E.OPTS;
+  var $ = function (s, r) { return (r || document).querySelector(s); };
+  var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
+
+  var TITLES = ['Ciri tanah', 'Riwayat pupuk', 'Foto dan periksa'];
+  var step = 1, photoUrl = null, lastRes = null;
+
+  // ---- bangun pilihan ----
+  $('#crop').insertAdjacentHTML('beforeend', Object.keys(O.crop).map(function (k) { return '<option value="' + k + '">' + O.crop[k].label + '</option>'; }).join(''));
+  function opts(el, name, map, o) {
+    o = o || {};
+    $(el).innerHTML = Object.keys(map).map(function (k) {
+      var m = map[k];
+      var lead = m.hex ? '<span class="sw" style="background:' + m.hex + '"></span>' : '';
+      return '<label class="opt tall"><input class="sr" type="radio" name="' + name + '" value="' + k + '"' + (o.def === k ? ' checked' : '') + '>' +
+        '<span class="opt-body"><span class="opt-t">' + lead + m.label + '</span>' + (m.desc && !o.nodesc ? '<span class="opt-d">' + m.desc + '</span>' : '') + '</span>' +
+        '<span class="opt-check"><i data-ic="check"></i></span></label>';
+    }).join('');
+  }
+  opts('#o-tekstur', 'tekstur', O.tekstur);
+  opts('#o-warna', 'warna', O.warna, { def: 'ragu' });
+  opts('#o-cacing', 'cacing', O.cacing, { def: 'ragu' });
+  opts('#o-air', 'air', O.air, { def: 'ragu' });
+  opts('#o-durasi', 'durasi', O.durasi, { def: 'sedang' });
+  opts('#o-organik', 'organik', O.organik, { def: 'tidak' });
+  window.SWIcons.paint();
+
+  var chem = $('#chem'), chemVal = $('#chemVal');
+  function chemLabel() { return O.chemLabels[Math.round(chem.value / 25)]; }
+  chem.addEventListener('input', function () { chemVal.textContent = chemLabel(); });
+  chemVal.textContent = chemLabel();
+
+  function val(name) { var c = $('input[name="' + name + '"]:checked'); return c ? c.value : ''; }
+  function answers() {
+    return { crop: $('#crop').value, tekstur: val('tekstur'), warna: val('warna'), cacing: val('cacing'), air: val('air'), chem: +chem.value, durasi: val('durasi'), organik: val('organik') };
+  }
+
+  // ---- langkah ----
+  function show(n, quiet) {
+    step = n;
+    $$('[data-step]').forEach(function (s) { s.hidden = +s.getAttribute('data-step') !== n; });
+    $('#stepCount').textContent = 'Langkah ' + n + ' dari 3';
+    $('#stepTitle').textContent = TITLES[n - 1];
+    $$('.steps-h span').forEach(function (s, i) { s.classList.toggle('on', i < n); });
+    $$('[data-rail]').forEach(function (r) {
+      var k = +r.getAttribute('data-rail');
+      r.classList.toggle('is-on', k === n); r.classList.toggle('is-done', k < n);
+    });
+    $('#back').hidden = n === 1;
+    $('#next').hidden = n === 3;
+    $('#run').hidden = n !== 3;
+    if (n === 3) renderReview();
+    if (!quiet) {
+      var top = $('#form').getBoundingClientRect().top + window.scrollY - 90;
+      window.scrollTo({ top: top, behavior: 'smooth' });
+    }
+  }
+
+  function validate1() {
+    var a = answers(), bad = null;
+    $('#f-crop').classList.toggle('has-err', !a.crop);
+    $('#f-tekstur').classList.toggle('has-err', !a.tekstur);
+    if (!a.crop) bad = $('#crop'); else if (!a.tekstur) bad = $('input[name="tekstur"]');
+    if (bad) { bad.focus({ preventScroll: true }); bad.scrollIntoView({ behavior: 'smooth', block: 'center' }); }
+    return !bad;
+  }
+  $('#crop').addEventListener('change', function () { $('#f-crop').classList.remove('has-err'); });
+  $('#o-tekstur').addEventListener('change', function () { $('#f-tekstur').classList.remove('has-err'); });
+
+  $('#next').addEventListener('click', function () { if (step === 1 && !validate1()) return; show(step + 1); });
+  $('#back').addEventListener('click', function () { show(step - 1); });
+
+  function renderReview() {
+    var a = answers();
+    var rows = [
+      ['Tanaman', O.crop[a.crop] ? O.crop[a.crop].label : '-', 1],
+      ['Tanah', (O.tekstur[a.tekstur] || {}).label || '-', 1],
+      ['Warna / cacing / air', [O.warna[a.warna].label, O.cacing[a.cacing].label, O.air[a.air].label].join(' · '), 1],
+      ['Pupuk kimia', O.chemLabels[Math.round(a.chem / 25)] + ', ' + O.durasi[a.durasi].label.toLowerCase(), 2],
+      ['Pupuk organik', O.organik[a.organik].label, 2]
+    ];
+    $('#review').innerHTML = rows.map(function (r) {
+      return '<div class="why-i" style="display:flex;justify-content:space-between;gap:10px;align-items:center;flex-wrap:wrap"><span><b>' + r[0] + '</b>' + window.SWUI.esc(r[1]) + '</span><button type="button" class="src-chip" data-go="' + r[2] + '" style="cursor:pointer">Ubah</button></div>';
+    }).join('');
+    $$('[data-go]').forEach(function (b) { b.addEventListener('click', function () { show(+b.getAttribute('data-go')); }); });
+  }
+
+  // ---- foto ----
+  var up = $('#upload'), photo = $('#photo');
+  function setPhoto(file) {
+    var err = $('#photoErr');
+    err.classList.remove('has-err'); err.style.display = 'none';
+    if (!file) return;
+    if (!/^image\//.test(file.type)) return showErr('Berkas harus berupa gambar (JPG atau PNG).');
+    if (file.size > 10 * 1024 * 1024) return showErr('Ukuran foto lebih dari 10 MB. Pilih foto yang lebih kecil.');
+    if (photoUrl) URL.revokeObjectURL(photoUrl);
+    photoUrl = URL.createObjectURL(file);
+    up.classList.add('has-img');
+    up.innerHTML = '<img src="' + photoUrl + '" alt="Pratinjau foto tanah"><span class="upload-meta">' + window.SWUI.esc(file.name) + '</span>';
+    $('#photoClear').hidden = false;
+  }
+  function showErr(msg) { var e = $('#photoErr'); e.style.display = 'flex'; e.querySelector('span').textContent = msg; photo.value = ''; }
+  photo.addEventListener('change', function () { setPhoto(photo.files[0]); });
+  ['dragover', 'dragenter'].forEach(function (ev) { up.addEventListener(ev, function (e) { e.preventDefault(); up.classList.add('drag'); }); });
+  ['dragleave', 'drop'].forEach(function (ev) { up.addEventListener(ev, function (e) { e.preventDefault(); up.classList.remove('drag'); }); });
+  up.addEventListener('drop', function (e) { if (e.dataTransfer.files[0]) setPhoto(e.dataTransfer.files[0]); });
+  $('#photoClear').addEventListener('click', function () {
+    if (photoUrl) URL.revokeObjectURL(photoUrl); photoUrl = null; photo.value = '';
+    up.classList.remove('has-img');
+    up.innerHTML = '<i data-ic="camera"></i><strong id="upText">Ketuk untuk memotret atau pilih foto</strong><span class="help">JPG atau PNG, maksimal 10 MB</span>';
+    window.SWIcons.paint(up); $('#photoClear').hidden = true;
+  });
+  $('#photoErr').style.display = 'none';
+
+  // ---- analisis ----
+  $('#form').addEventListener('submit', function (e) {
+    e.preventDefault();
+    if (!validate1()) { show(1); return; }
+    var btn = $('#run');
+    btn.disabled = true; btn.classList.add('is-loading'); $('#runTxt').textContent = 'Menimbang aturan…';
+    setTimeout(function () {
+      lastRes = E.evaluate(answers());
+      var actions =
+        '<div class="btn-row" style="margin-top:14px">' +
+        '<button class="btn" type="button" id="copyBtn"><i data-ic="copy"></i>Salin ringkasan</button>' +
+        '<button class="btn" type="button" id="againBtn"><i data-ic="refresh"></i>Periksa ulang</button></div>' +
+        '<textarea id="copyArea" class="sr" readonly aria-label="Ringkasan hasil" style="position:static;width:100%;height:120px;opacity:1;margin-top:10px;clip:auto" hidden></textarea>' +
+        '<a class="btn btn-dark" href="data.html" style="width:100%;margin-top:10px">Lihat data resmi di balik aturan <i data-ic="arrowRight"></i></a>';
+      E.render($('#result'), lastRes, { photo: photoUrl, actions: actions });
+      $$('.rail-item').forEach(function (r) { r.classList.remove('is-on'); r.classList.add('is-done'); });
+      $('[data-rail="4"]').classList.add('is-on');
+      btn.disabled = false; btn.classList.remove('is-loading'); $('#runTxt').textContent = 'Analisis tanah';
+      $('#copyBtn').addEventListener('click', copy);
+      $('#againBtn').addEventListener('click', function () { show(1); });
+      if (window.innerWidth < 900) $('#resPanel').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 650);
+  });
+
+  function copy() {
+    var text = E.summaryText(lastRes), area = $('#copyArea'), btn = $('#copyBtn');
+    function manual() { area.hidden = false; area.value = text; area.focus(); area.select(); btn.innerHTML = 'Tekan Ctrl+C untuk menyalin'; }
+    try {
+      navigator.clipboard.writeText(text).then(function () { btn.innerHTML = '<i data-ic="check"></i>Tersalin'; window.SWIcons.paint(btn); }, manual);
+    } catch (err) { manual(); }
+  }
+
+  show(1, true);
+})();
+</script>
+</body>
+</html>
